@@ -15,7 +15,8 @@ import com.bridgelabz.addressbookservice.dto.AddressBookDTO;
 
 @RestController
 @RequestMapping("/addressbookservice")
-public class AddressBookController {
+public class AddressBookController 
+{
 	@RequestMapping({"","/","/get"})
 	public ResponseEntity<String>  getAddressBookData(){
 		return new ResponseEntity<String>("get call success",HttpStatus.OK);
