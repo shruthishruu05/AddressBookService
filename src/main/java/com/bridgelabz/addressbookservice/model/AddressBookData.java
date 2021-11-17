@@ -1,58 +1,47 @@
 package com.bridgelabz.addressbookservice.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import com.bridgelabz.addressbookservice.dto.AddressBookDTO;
 
-public class AddressBookData {
+import lombok.Data;
+@Entity
+@Table(name="addressbook_table")
+public @Data class AddressBookData {
 	
-	private int Id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="address_id")
+	private int addressId;
+
 	private String name;
-    private String address;
-    private String phoneNo;
-    private String email;
-    
 	
-	public int getId() {
-		return Id;
+    private String address;
+	
+	private String city;
+
+    private String state;
+	
+    private String zip;
+	
+    private String phoneNumber;
+	
+
+	public AddressBookData(AddressBookDTO addressbookDTO) {
+		this.updateAddressBook(addressbookDTO);
 	}
-	public void setId(int id) {
-		Id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	public String getPhoneNo() {
-		return phoneNo;
-	}
-	public void setPhoneNo(String phoneNo) {
-		this.phoneNo = phoneNo;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	@Override
-	public String toString() {
-		return "AddressBookData [Id=" + Id + ", name=" + name + ", address=" + address + ", phoneNo=" + phoneNo
-				+ ", email=" + email + "]";
-	}
-	public AddressBookData(int id,AddressBookDTO addressbookDTO) {
-		super();
-		Id = id;
+	public void updateAddressBook(AddressBookDTO addressbookDTO) {
 		this.name = addressbookDTO.name;
 		this.address = addressbookDTO.address;
-		this.phoneNo = addressbookDTO.phoneNo;
-		this.email = addressbookDTO.email;
+		this.city = addressbookDTO.city;
+		this.state = addressbookDTO.state;
+		this.zip = addressbookDTO.zip;
+		this.phoneNumber = addressbookDTO.phoneNumber;
 	}
 	public AddressBookData()
 	{

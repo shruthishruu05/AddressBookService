@@ -2,35 +2,27 @@ package com.bridgelabz.addressbookservice.dto;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
+import lombok.ToString;
 
-public class AddressBookDTO {
+public @ToString class AddressBookDTO {
 	
-	@NotEmpty(message="Name cannot be null")
-	@Pattern(regexp = "^[A-Z|a-z]{2,}$",message ="Name Invalid")
+	@NotEmpty(message="name cannot be null")
+	@Pattern(regexp = "^[A-Z][a-zA-Z]{2,}([ ][A-Z][a-zA-Z]*)?$",message ="firstName Invalid")
     public String name;
 	
-	@Pattern(regexp = "^[A-Z|a-z]{3,}$",message ="Address Invalid")
+	@Pattern(regexp = "[a-zA-Z]{3,}[\s](([a-zA-Z]{3,})+)",message ="Address Invalid")
     public String address;
-    
-    @Pattern(regexp = "^(\\+\\d{2}|\\d{2})?\\d{10}$",message ="Phone number Invalid")
-    public String phoneNo;
-    
-    @Pattern(regexp = "^[a-zA-Z]*[@][.a-zA-z]*$",message ="Email Invalid")
-    public String email;
-
-	public AddressBookDTO(String name, String address, String phoneNo, String email) {
-		super();
-		this.name = name;
-		this.address = address;
-		this.phoneNo = phoneNo;
-		this.email = email;
-	}
-
-	@Override
-	public String toString() {
-		return "AddressBookDTO [name=" + name + ", address=" + address + ", phoneNo=" + phoneNo + ", email=" + email
-				+ "]";
-	}
-
+	
+	@Pattern(regexp = "^[A-Z|a-z]{3,}$",message ="city Invalid")
+    public String city;
+	
+	@Pattern(regexp = "^[A-Z|a-z]{3,}$",message ="state Invalid")
+    public String state;
+	
+	@Pattern(regexp = "^([0-9]{3})([\s]?)([0-9]{3})$",message ="zip code Invalid")
+    public String zip;
+	
+	@Pattern(regexp = "^(([+]?[1-9][0-9])?)([6-9][0-9]{9})$",message ="Phone number Invalid")
+    public String phoneNumber;
 	
 }
